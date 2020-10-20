@@ -4,6 +4,8 @@ import {render} from 'react-dom';
 import Login from './login';
 import Principal from './principal';
 import Registro from './Registro';
+import topbar from './topbar';
+import MisTareas from './MisTareas';
 
 
 
@@ -19,6 +21,7 @@ class App extends Component{
                 
                 <Route path="/principal" component={Principal}/>
                 <Route path="/registro" component={Registro}/>
+                <Route path="/MisTareas" component={MisTareas}/>
             </Router>
             
         

@@ -6,7 +6,7 @@ export default class TareasProximas extends Component {
         return (
             <div className="card" style={{margin: ".7em"}}>
                 <div>
-                  <a className="" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="true" aria-controls="multiCollapseExample2"><i className="fas fa-caret-down"></i>Próxi mas</a>
+                  <a className="" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="true" aria-controls="multiCollapseExample2"><i className="fas fa-caret-down"></i>Tareas Próximas</a>
                 </div>
 
                 <div id="multiCollapseExample2"  className="collapse multi-collapse">
