@@ -1,0 +1,2 @@
+1. Usuario o ccorreo incorrectos
+2. Contraseña incorrecta
