@@ -10,6 +10,8 @@ const { json } = require('body-parser');
 
 const login =require('./src/login');
 const Registro= require('./src/Registro');
+const equipo =require('./src/equipo');
+const { response } = require('express');
 
 
 
@@ -39,7 +41,20 @@ router.get("/principal",function (req,res) {
 })
 
 
+app.post("/equipo",function(req,res){
+    var respuesta=equipo.ProcesarRequest(req);
+    respuesta.then((response)=>{
+        console.log(response);
+        console.log("------End Equipo-----");
+        res.send(response);
+    }).catch((response)=>{
+        console.log(response);
+        console.log("------End Equipo-----");
+        res.send(3);
+    });
 
+
+});
 
 app.post('/login',function(req,res){
    var respuesta=login.ProcesarInicio(req);

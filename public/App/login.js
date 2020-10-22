@@ -39,6 +39,7 @@ class Login extends Component{
                 }else{
                     var resp=JSON.parse(respuesta);
                     console.log(resp);
+                    localStorage.setItem("IdEmpresa",resp.organizacion);
                     localStorage.setItem("ID",resp._id);
                     location.pathname="/principal";
                     //cambiar();
