@@ -12,6 +12,7 @@ const login =require('./src/login');
 const Registro= require('./src/Registro');
 const equipo =require('./src/equipo');
 const { response } = require('express');
+const proyecto = require('./src/proyecto');
 
 
 
@@ -54,6 +55,19 @@ app.post("/equipo",function(req,res){
     });
 
 
+});
+
+app.post("/proyecto",function(req,res){
+    var respuesta=proyecto.ProcesarRequest(req);
+    respuesta.then((response)=>{
+        console.log(response);
+        console.log("------End Proyecto-----");
+        res.send(response);
+    }).catch((response)=>{
+        console.log(response);
+        console.log("------End Proyecto-----");
+        res.send(4)
+    });
 });
 
 app.post('/login',function(req,res){

@@ -4,7 +4,8 @@ var EquipoSJSON={
     nombre:String,
     descripcion:String,
     miembros:Array,
-    estado:String
+    estado:String,
+    organizacion:Schema.Types.ObjectId
 
 }
 var equipoS=new Schema(EquipoSJSON);

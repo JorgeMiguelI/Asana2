@@ -221,8 +221,9 @@ export default class NuevoEquipo extends Component {
         var formData = new FormData($("#Principal")[0]);
 
         this.miembros.splice(0, 1);
-
-        formData.append("miembros", this.miembros);
+        var miembros=JSON.stringify(this.miembros);
+        formData.append("miembros", miembros);
+        formData.append("organizacion",localStorage.getItem("IdEmpresa"));
         formData.append("Operation", 2);
 
         $.ajax({

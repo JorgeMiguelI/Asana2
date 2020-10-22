@@ -1,10 +1,7 @@
-const express = require('express');
+
 var multipart = require('multiparty');
 var User = require('./Schema/Usuario');
-var Empresa = require('./Schema/Empresa');
-var mongoose = require('mongoose');
-const { response } = require('express');
-const { findById } = require('./Schema/Usuario');
+
 const Equipo = require('./Schema/Equipo');
 
 
@@ -34,7 +31,8 @@ module.exports={
                         nombre:fields.nombre[0],
                         descipcion:fields.descripcion[0],
                         miembros:fields.miembros[0],
-                        estado:"A"
+                        estado:"A",
+                        organizacion:fields.organizacion[0]
                     });
                     equipo.save().then(()=>{
                         console.log("-*-*-*-*-* Equipo Guardado -*-*-*-");
