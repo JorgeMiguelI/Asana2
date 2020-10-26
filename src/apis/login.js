@@ -6,7 +6,7 @@ var multipart = require('multiparty');
 const bodyParser = require('body-parser');
 const { json } = require('body-parser');
 
-var User = require('./Schema/Usuario');
+var User = require('../Schema/Usuario');
 var mongoose = require('mongoose');
 
 

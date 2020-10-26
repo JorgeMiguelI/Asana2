@@ -1,8 +1,8 @@
 var multipart = require('multiparty');
-var User = require('./Schema/Usuario');
+var User = require('../Schema/Usuario');
 
-const Equipo = require('./Schema/Equipo');
-const Proyecto = require('./Schema/Proyecto');
+const Equipo = require('../Schema/Equipo');
+const Proyecto = require('../Schema/Proyecto');
 const equipo = require('./equipo');
 const { response } = require('express');
 

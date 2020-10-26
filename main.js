@@ -1,18 +1,8 @@
 const express= require('express');
-const mongo =require('mongoose');
-const router = express.Router();
-const path= require('path');
-var multipart = require('multiparty');
 const bodyParser= require('body-parser');
-const { json } = require('body-parser');
+var mongoose = require('mongoose');
+const router=require('./src/routes/routes');
 
-//Modulos
-
-const login =require('./src/login');
-const Registro= require('./src/Registro');
-const equipo =require('./src/equipo');
-const { response } = require('express');
-const proyecto = require('./src/proyecto');
 
 
 
@@ -30,105 +20,14 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
-  });
-
-
-
-
-
-//app.use("/",express.static("public"));
-
-//app.use("/",express.static("src"));
-
-
-
-router.get("/",function(req,res){
-    
 });
 
-router.get("/principal",function (req,res) {
-   
-})
 
 
-app.post("/equipo",function(req,res){
-    var respuesta=equipo.ProcesarRequest(req);
-    respuesta.then((response)=>{
-        console.log(response);
-        console.log("------End Equipo-----");
-        res.send(response);
-    }).catch((response)=>{
-        console.log(response);
-        console.log("------End Equipo-----");
-        res.send(3);
-    });
+ mongoose.connect("mongodb://localhost/Asana");
 
 
-});
 
-app.post("/proyecto",function(req,res){
-    var respuesta=proyecto.ProcesarRequest(req);
-    respuesta.then((response)=>{
-        console.log(response);
-        console.log("------End Proyecto-----");
-        res.send(response);
-    }).catch((response)=>{
-        console.log(response);
-        console.log("------End Proyecto-----");
-        res.send(4)
-    });
-});
-
-app.post('/login',function(req,res){
-   var respuesta=login.ProcesarInicio(req);
-
-   respuesta.then(function (response) {
-        console.log("-----End Login----------");
-        console.log(response);
-       res.send(response);
-       
-   }).catch((response)=>{
-    console.log(response);
-    console.log("-----End Login----------");
-
-    res.send(response);
-   });
-
-    
-
-    
-    
-    
-   /*  console.log(req.query);
-    console.log(req.body);
-    console. log(req.body.correo);*/
-    
-    
-   // res.send("Correcto");
-});
-
-app.get("/login",function(req,res){
- 
-    console.log("---------------------------------------");
-    //console.log(req);
-    console.log(req.body);
-    console.log(req.body.correo);
-    
-    console.log("---------------------------------------");
-    res.send("Correcto");
-});
-
-app.post('/registro',function(req,res){
-    var respuesta=Registro.ProcesarInicio(req);
-
-   respuesta.then(function (response) {
-        console.log("Response:"+ response);
-        console.log("-----End Registro----------");
-        
-       res.send(response);
-       
-   });
-});
 
 app.listen(PORT,()=>{
     console.log("Server Running on port "+PORT);

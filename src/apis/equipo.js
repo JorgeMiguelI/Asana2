@@ -1,8 +1,8 @@
 
 var multipart = require('multiparty');
-var User = require('./Schema/Usuario');
+var User = require('../Schema/Usuario');
 
-const Equipo = require('./Schema/Equipo');
+const Equipo = require('../Schema/Equipo');
 
 
 module.exports={

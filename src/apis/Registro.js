@@ -1,12 +1,12 @@
 const express = require('express');
 var multipart = require('multiparty');
-var User = require('./Schema/Usuario');
-var Empresa = require('./Schema/Empresa');
-var mongoose = require('mongoose');
+var User = require('../Schema/Usuario');
+var Empresa = require('../Schema/Empresa');
+
 const { response } = require('express');
 
 
-mongoose.connect("mongodb://localhost/Asana");
+
 
 
 module.exports = {
