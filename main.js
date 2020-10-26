@@ -10,11 +10,14 @@ const { json } = require('body-parser');
 
 const login =require('./src/login');
 const Registro= require('./src/Registro');
+const equipo =require('./src/equipo');
+const { response } = require('express');
+const proyecto = require('./src/proyecto');
 
 
 
 //const PORT = process.env.PORT || 3050;
-const PORT=3000;
+const PORT=8080;
 
 var app=express();
 
@@ -22,24 +25,59 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.use(router);
-app.use("/",express.static("public"));
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+
+
+
+
+
+//app.use("/",express.static("public"));
 
 //app.use("/",express.static("src"));
 
 
 
 router.get("/",function(req,res){
-    var index=path.resolve(__dirname+"/public","index.html");
-    res.sendFile(index);
+    
 });
 
 router.get("/principal",function (req,res) {
-    var index=path.resolve(__dirname+"/public","index.html");
-    res.sendFile(index);
+   
 })
 
 
+app.post("/equipo",function(req,res){
+    var respuesta=equipo.ProcesarRequest(req);
+    respuesta.then((response)=>{
+        console.log(response);
+        console.log("------End Equipo-----");
+        res.send(response);
+    }).catch((response)=>{
+        console.log(response);
+        console.log("------End Equipo-----");
+        res.send(3);
+    });
 
+
+});
+
+app.post("/proyecto",function(req,res){
+    var respuesta=proyecto.ProcesarRequest(req);
+    respuesta.then((response)=>{
+        console.log(response);
+        console.log("------End Proyecto-----");
+        res.send(response);
+    }).catch((response)=>{
+        console.log(response);
+        console.log("------End Proyecto-----");
+        res.send(4)
+    });
+});
 
 app.post('/login',function(req,res){
    var respuesta=login.ProcesarInicio(req);

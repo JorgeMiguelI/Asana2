@@ -1,2 +1,4 @@
 1. Usuario o ccorreo incorrectos
 2. Contraseña incorrecta
+3. Error Guardando Equipo
+4. Error Guardando Proyecto

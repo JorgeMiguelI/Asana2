@@ -9,7 +9,7 @@ module.exports={
             {
                 use:'babel-loader',
                 test: /\.js$/,
-                exclude: /node_modules/
+                exclude: /node_modules src/
             }
         ]
     }
