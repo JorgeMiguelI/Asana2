@@ -76,7 +76,7 @@ router.get("/login", async function(req, res) {
                 if (data.length == 0) {
                     res.json({ data: "no encontrado" });
                 } else {
-                    console.log(data[0]);
+                    //console.log(data[0]);
                     res.json(data[0]);
                 }
             }

@@ -39,23 +39,13 @@ module.exports={
                                         })
                                         
                                     });
-                                    
                                     resolveE("correcto");
-
                                 });
-
-
                             });    
                             esperar.then(()=>{
                                 console.log(miembrosInfo);
                                 resolveG(miembrosInfo);
                             })  ;                    
-                            
-                            
-                            
-                           
-
-
                         });
                         break;
                     }
@@ -77,12 +67,6 @@ module.exports={
                             console.log(error);
                             rejectG("Error Guardando");
                         })
-
-
-
-
-
-
                         break;
                     }
                 }

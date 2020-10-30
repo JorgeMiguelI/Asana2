@@ -33,6 +33,8 @@ mongoose.connect('mongodb://127.0.0.1/Asana', {
 
 //Routes
 app.use(require('./src/routes/routes'));
+app.use(require('./src/routes/proyecto'));
+app.use(require('./src/routes/Tareas'));
 
 //Sever
 
