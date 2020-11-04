@@ -12,7 +12,7 @@ var TareaE= new Schema({
         type: String,
         default: ""
     },
-    proyecto: Array,
+    proyecto:Schema.Types.ObjectId,
     estado: {
         type:String,
         default:""
