@@ -33,9 +33,18 @@ Router.post('/addTarea', async(req, res)=>{
     }catch(e){
         res.json({msg: "error"});
     }
-
-    
 })
+//Api para Eliminar Una tarea
+Router.delete('/deleteTarea/:idTarea', async(req, res)=>{
+    const idTarea= req.params.idTarea;
+    console.log(idTarea);
+    try{
+        let resp= await Tarea.deleteOne({_id: idTarea});
+        res.json(resp);
+    }catch(e){
+        res.json({msg:"Error"});
+    }
+});
 
 
 module.exports=Router;
