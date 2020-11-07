@@ -37,7 +37,7 @@ Router.post('/addTarea', async(req, res)=>{
 //Api para Eliminar Una tarea
 Router.delete('/deleteTarea/:idTarea', async(req, res)=>{
     const idTarea= req.params.idTarea;
-    console.log(idTarea);
+    //console.log(idTarea);
     try{
         let resp= await Tarea.deleteOne({_id: idTarea});
         res.json(resp);
@@ -45,6 +45,19 @@ Router.delete('/deleteTarea/:idTarea', async(req, res)=>{
         res.json({msg:"Error"});
     }
 });
+//Api para Traer mis tareas dado mi Id de colaborador
+Router.get("/GetMisTareas/:idColaborador", async(req, res)=>{
+    const idEncargado= req.params.idColaborador;
+    //console.log(idEncargado);
+    try{
+        let resp= await Tarea.find({encargado: idEncargado});
+        res.json(resp);
+    }catch(e){
+        res.json({msg: "Error"});
+    }
+
+})
+
 
 
 module.exports=Router;
