@@ -55,6 +55,29 @@ Router.get("/GetMisTareas/:idColaborador", async(req, res)=>{
     }catch(e){
         res.json({msg: "Error"});
     }
+})
+
+//Api para Traer tarea dado el Id de la tarea
+Router.get("/GetTarea/:idTarea", async(req, res)=>{
+    const idTarea= req.params.idTarea;
+    //console.log(idEncargado);
+    try{
+        let resp= await Tarea.find({_id: idTarea});
+        res.json(resp[0]);
+    }catch(e){
+        res.json({msg: "Error"});
+    }
+})
+
+//Api para traer Subtareas dado el id de la Subtarea
+Router.get("/GetSubtarea/:idSubtarea", async(req, res)=>{
+    const idSubtarea= req.params.idSubtarea;
+    try{
+        let resp= await Tarea.find({_id: idSubtarea});
+        res.json(resp[0]);
+    }catch(e){
+        res.json({msg: "Error"});
+    }
 
 })
 
