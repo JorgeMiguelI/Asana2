@@ -83,8 +83,21 @@ Router.get('/GetMiembros/:idproyecto', async (req, res)=>{
         })
     }
     res.json(ListaColaboradores);
-    //console.log(ListaColaboradores);
-    
+    //console.log(ListaColaboradores); 
+})
+
+//API para obtener los proyectos por Id
+Router.get('/GetProyectoById/:idProyecto', async (req, res)=>{
+    const idProyecto= req.params.idProyecto;
+    await Proyecto.findById(idProyecto, (err, data)=>{
+        if(err){
+            res.json({msg: "Error"});
+        }else{
+            //console.log(data)
+            res.json(data);
+        }
+    })
+
 })
 
 
