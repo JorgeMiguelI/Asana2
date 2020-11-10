@@ -4,6 +4,7 @@ var TareaE= new Schema({
     nombre: String,
     encargado:Schema.Types.ObjectId,
     fecha_entrega: String,
+    fecha_publicacion: String,
     descripcion: {
         type:String,
         default:""
