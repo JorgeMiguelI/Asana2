@@ -1,14 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
-const path = require('path');
-var multipart = require('multiparty');
 const bodyParser = require('body-parser');
 const { json } = require('body-parser');
 const app = express();
 const cors = require('cors');
-/*const login = require('./src/login');
-const Registro = require('./src/Registro');*/
 app.use(router);
 
 //Settings
@@ -35,77 +31,13 @@ mongoose.connect('mongodb://127.0.0.1/Asana', {
 app.use(require('./src/routes/routes'));
 app.use(require('./src/routes/proyecto'));
 app.use(require('./src/routes/Tareas'));
+app.use(require('./src/routes/Colaborador'));
 
 //Sever
-
 app.listen(app.get('port'), () => {
     console.log(`Server Running on port ${app.get('port')}`);
 });
 
-//app.use("/",express.static("public"));
 
 
 
-/*router.get("/", function(req, res) {
-    var index = path.resolve(__dirname + "/public", "index.html");
-    res.sendFile(index);
-});*/
-
-/*router.get("/principal", function(req, res) {
-    var index = path.resolve(__dirname + "/public", "index.html");
-    res.sendFile(index);
-})*/
-
-
-
-
-/*app.post('/login', function(req, res) {
-    var respuesta = login.ProcesarInicio(req);
-
-    respuesta.then(function(response) {
-        console.log("-----End Login----------");
-        console.log(response);
-        res.send(response);
-
-    }).catch((response) => {
-        console.log(response);
-        console.log("-----End Login----------");
-
-        res.send(response);
-    });*/
-
-
-
-
-
-
-/*  console.log(req.query);
- console.log(req.body);
- console. log(req.body.correo);*/
-
-
-// res.send("Correcto");
-//});
-
-/*app.get("/login", function(req, res) {
-
-    console.log("---------------------------------------");
-    //console.log(req);
-    console.log(req.body);
-    console.log(req.body.correo);
-
-    console.log("---------------------------------------");
-    res.send("Correcto");
-});*/
-
-/*app.post('/registro', function(req, res) {
-    var respuesta = Registro.ProcesarInicio(req);
-
-    respuesta.then(function(response) {
-        console.log("Response:" + response);
-        console.log("-----End Registro----------");
-
-        res.send(response);
-
-    });
-});*/
