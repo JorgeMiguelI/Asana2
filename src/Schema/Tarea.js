@@ -20,7 +20,8 @@ var TareaE= new Schema({
     },
     subtareas: Array,
     creador: Schema.Types.ObjectId,
-    observaciones: Array
+    observaciones: Array,
+    EsTarea:Boolean
 });
 
 var Tarea=model("Tarea",TareaE);
