@@ -51,6 +51,7 @@ Router.get("/GetMisTareas/:idColaborador", async(req, res)=>{
     //console.log(idEncargado);
     try{
         let resp= await Tarea.find({encargado: idEncargado});
+        console.log(resp);
         res.json(resp);
     }catch(e){
         res.json({msg: "Error"});
