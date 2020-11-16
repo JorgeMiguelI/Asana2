@@ -92,6 +92,19 @@ Router.get("/GetSubtarea/:idSubtarea", async(req, res)=>{
 
 })
 
+//Api para actualizar Tarea
+Router.put("/UpdateTarea", async(req, res)=>{
+    const tarea= req.body.data;
+    console.log(tarea)
+    try{
+        let resp= await Tarea.update({nombre: tarea.nombre}, tarea);
+        res.json(resp); 
+    }catch(e){
+        console.log(e)
+        res.json({msg: "error"});
+    }
+})
+
 
 
 module.exports=Router;
