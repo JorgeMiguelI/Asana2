@@ -98,7 +98,7 @@ Router.put("/UpdateTarea", async(req, res)=>{
     const tarea= req.body.data;
     console.log(tarea)
     try{
-        let resp= await Tarea.update({nombre: tarea.nombre}, tarea);
+        let resp= await Tarea.update({_id: tarea.id}, tarea);
         res.json(resp); 
     }catch(e){
         console.log(e)
