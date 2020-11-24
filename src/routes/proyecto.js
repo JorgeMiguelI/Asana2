@@ -112,6 +112,34 @@ Router.get("/GetTaskProject/:idProyecto", async(req, res)=>{
     }
 })
 
+//Api para traer proyectos dado el id del Colaborador
+Router.get("/GetEquipoColaborador/:idColaborador", async (req, res)=>{
+    const idColaborador= req.params.idColaborador;
+    console.log(idColaborador)
+    let ListaEquipos= [];
+    let ListaProyectos= [];
+    try{
+        let resp= await Equipo.find();
+        for(let team of resp){
+            let Listamiembros= JSON.parse(team.miembros);
+            for(let miembro of Listamiembros){
+                if(miembro.Id==idColaborador){
+                    ListaEquipos.push(team);
+                }
+            }
+        }
+        for(let team of ListaEquipos){
+            let proyecto= await Proyecto.find({equipo: team._id})
+            ListaProyectos.push(proyecto[0]);
+        }
+        
+
+        res.json(ListaProyectos);
+    }catch(e){
+        res.json({msg: "error"});
+    }
+})
+
 
 
 module.exports=Router;
