@@ -128,12 +128,18 @@ Router.get("/GetEquipoColaborador/:idColaborador", async (req, res)=>{
                 }
             }
         }
+        console.clear();
         for(let team of ListaEquipos){
-            let proyecto= await Proyecto.find({equipo: team._id})
-            ListaProyectos.push(proyecto[0]);
+            let proyectoList= await Proyecto.find({equipo: team._id})
+            //console.log(proyecto);
+            for(let proyecto of proyectoList){
+                ListaProyectos.push(proyecto);
+            }
+           
+            
         }
         
-
+        console.log(ListaProyectos);
         res.json(ListaProyectos);
     }catch(e){
         res.json({msg: "error"});
