@@ -1,4 +1,4 @@
-//Arhcio donde estaran todas las apis para trabajar con los proyectos
+//Archivo donde estaran todas las apis para trabajar con los proyectos
 const express= require('express');
 const Router= express.Router();
 
@@ -6,6 +6,7 @@ var Empresa = require('../Schema/Empresa');
 var User = require('../Schema/Usuario');
 const Equipo = require('../Schema/Equipo');
 const Proyecto = require('../Schema/Proyecto');
+const Tarea = require('../Schema/Tarea');
 
 
 //Api Para obtener todos los proyectos dado el Id de una Empresa
@@ -99,6 +100,18 @@ Router.get('/GetProyectoById/:idProyecto', async (req, res)=>{
     })
 
 })
+
+//API para traer las tareas dado el id del Proyecto
+Router.get("/GetTaskProject/:idProyecto", async(req, res)=>{
+    const idProyecto= req.params.idProyecto;
+    try{
+        let resp= await Tarea.find({proyecto: idProyecto})
+        res.json(resp);
+    }catch(e){
+        res.json({msg: "error"});
+    }
+})
+
 
 
 module.exports=Router;
