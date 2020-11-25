@@ -18,5 +18,18 @@ Router.get('/GetColaborador/:idColaborador', async (req, res)=>{
     })
 })
 
+//Api para actualizar el Rol de un usuario
+Router.get('/UpdateRol/:idColaborador', async (req, res)=>{
+    const idColaborador= req.params.idColaborador;
+    try{
+        let resp= await User.update({_id: idColaborador}, {rol: 'D'});
+        res.json(resp);
+    }catch(e){
+        res.json({msg: "error"});
+    }
+   
+
+})
+
 
 module.exports=Router;

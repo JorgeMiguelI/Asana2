@@ -115,7 +115,6 @@ Router.get("/GetTaskProject/:idProyecto", async(req, res)=>{
 //Api para traer proyectos dado el id del Colaborador
 Router.get("/GetEquipoColaborador/:idColaborador", async (req, res)=>{
     const idColaborador= req.params.idColaborador;
-    console.log(idColaborador)
     let ListaEquipos= [];
     let ListaProyectos= [];
     try{
