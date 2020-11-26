@@ -22,7 +22,7 @@ Router.get('/GetColaborador/:idColaborador', async (req, res)=>{
 Router.get('/UpdateRol/:idColaborador', async (req, res)=>{
     const idColaborador= req.params.idColaborador;
     try{
-        let resp= await User.update({_id: idColaborador}, {rol: 'D'});
+        let resp= await User.update({_id: idColaborador}, {rol: 'L'});
         res.json(resp);
     }catch(e){
         res.json({msg: "error"});
