@@ -7,18 +7,26 @@ var User = require('../Schema/Usuario');
 const Equipo = require('../Schema/Equipo');
 const Proyecto = require('../Schema/Proyecto');
 
-/*Router.get('/GetEquipoColaborador/:idColaborador', async(req, res)=>{
-    const idColaborador= req.params.idColaborador;
+//Api para traer los equipos dado el id de la empresa
+Router.get("/GetEquiposByEmpresa/:idEmpresa", async(req, res)=>{
+    const idEmpresa= req.params.idEmpresa;
     try{
-        let resp= await Equipo.find({miembros : {$all: [idColaborador]} });
-        console.log(resp)
-        res.json(resp)
+        let resp= await Equipo.find({organizacion: idEmpresa});
+        res.json(resp);
     }catch(e){
-        cons
         res.json({msg: "error"});
     }
-    
-})*/
+});
 
+//Api para traer un equipo dado su Id
+Router.get("/GetEquipoById/:idEquipo", async(req, res)=>{
+    const idEquipo= req.params.idEquipo;
+    try {
+        let resp= await Equipo.findById(idEquipo);
+        res.json(resp);
+    } catch (error) {
+        res.json({msg: "error"});
+    }
+})
 
 module.exports=Router;

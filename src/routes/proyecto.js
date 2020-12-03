@@ -133,13 +133,49 @@ Router.get("/GetEquipoColaborador/:idColaborador", async (req, res)=>{
             //console.log(proyecto);
             for(let proyecto of proyectoList){
                 ListaProyectos.push(proyecto);
-            }
-           
-            
+            }       
         }
-        
-        console.log(ListaProyectos);
+        //console.log(ListaProyectos);
         res.json(ListaProyectos);
+    }catch(e){
+        res.json({msg: "error"});
+    }
+});
+
+//Api para actualizar Proyecto
+Router.put("/UpdateProyecto", async(req, res)=>{
+    const proyecto= req.body.data;
+    try{
+        let resp= await Proyecto.update({_id: proyecto.id}, proyecto);
+        res.json(resp); 
+    }catch(e){
+        console.log(e)
+        res.json({msg: "error"});
+    }
+})
+
+//Api para eliminar un proyecto
+Router.delete("/DeleteProyecto/:idProyecto", async (req, res)=>{
+    const idProyecto= req.params.idProyecto;
+    let ProyectoFind;
+    try{
+        //Buscamos el proyecto
+        let resp= await Proyecto.findById(idProyecto);
+        ProyectoFind= resp;
+
+        //Actualizamos el rol del Lider
+        //let resp2= await User.updateOne({_id: ProyectoFind.lider}, {rol: 'C'});
+        //console.log("Se ha actualizado el Rol");
+
+        //Eliminamos las tareas asignadas a ese proyecto
+        let resp3= await Tarea.deleteMany({proyecto: idProyecto});
+        //console.log(resp3); al imprimir en el campo deleteCount son las tareas eliminadas
+
+        //Por ultimo eliminamos el proyecto
+        let resp4= await Proyecto.deleteOne({_id: idProyecto});
+        //console.log("Se ha elimado la tarea");
+        res.json({msg: "Ok"});
+        
     }catch(e){
         res.json({msg: "error"});
     }

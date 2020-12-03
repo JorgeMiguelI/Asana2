@@ -79,14 +79,6 @@ async function SendCorreo(correo, empresa){
     .catch(e=>{
         console.log(e);
     })
-    /*transporter.sendMail(mailOptions, function(error, info) {
-        if (error) {
-            console.log(error);
-        } else {
-            console.log("Mensaje mandado a "+ correo);
-        }
-    });*/
-
 }
 
 
