@@ -29,7 +29,7 @@ module.exports={
                     console.log("-*-*-*-* Guardado de Equipo -*-*-*-*");
                     var equipo=new Equipo({
                         nombre:fields.nombre[0],
-                        descipcion:fields.descripcion[0],
+                        descripcion:fields.descripcion[0],
                         miembros:fields.miembros[0],
                         estado:"A",
                         organizacion:fields.organizacion[0]
