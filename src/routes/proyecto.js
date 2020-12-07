@@ -162,11 +162,6 @@ Router.delete("/DeleteProyecto/:idProyecto", async (req, res)=>{
         //Buscamos el proyecto
         let resp= await Proyecto.findById(idProyecto);
         ProyectoFind= resp;
-
-        //Actualizamos el rol del Lider
-        //let resp2= await User.updateOne({_id: ProyectoFind.lider}, {rol: 'C'});
-        //console.log("Se ha actualizado el Rol");
-
         //Eliminamos las tareas asignadas a ese proyecto
         let resp3= await Tarea.deleteMany({proyecto: idProyecto});
         //console.log(resp3); al imprimir en el campo deleteCount son las tareas eliminadas
@@ -180,6 +175,35 @@ Router.delete("/DeleteProyecto/:idProyecto", async (req, res)=>{
         res.json({msg: "error"});
     }
 })
+
+//Api para traer los proyectos dado el ID de un equipo
+Router.get("/GetProyectosByTeam/:idEquipo", async(req, res)=>{
+    const idEquipo= req.params.idEquipo;
+    try{
+        let resp= await Proyecto.find({equipo: idEquipo});
+        res.json(resp);
+    }catch(e){
+        res.json({msg: "error"});
+    }
+});
+
+//Api para traer los miembros de un equipo dado el ID del equipo
+Router.get("/GetMiembrosByTeam/:idEquipo", async(req, res)=>{
+    const idEquipo= req.params.idEquipo;
+    let ListaT= [];
+    let ListaMiembros= [];
+    try {
+        let resp= await Equipo.findById(idEquipo);
+        ListaT= JSON.parse(resp.miembros);
+        for(let miembro of ListaT){
+            let user= await User.findById(miembro.Id);
+            ListaMiembros.push(user);
+        }
+        res.json(ListaMiembros)
+    } catch (e) {
+        res.json({msg: "error"});
+    }
+});
 
 
 

@@ -29,4 +29,26 @@ Router.get("/GetEquipoById/:idEquipo", async(req, res)=>{
     }
 })
 
+//Api para obtener los proyectos dado el Id del equipo
+Router.get("/GetProyectosByTeam/:idEquipo", async(req, res)=>{
+    const idEquipo= req.params.idEquipo;
+    try {
+        let resp= await Proyecto.find({equipo: idEquipo});
+        res.json(resp);
+    } catch (e) {
+        res.json({msg: "error"});
+    }
+})
+
+//Api para eliminar un Equipo
+Router.delete("/DeleteEquipo/:idEquipo", async(req, res)=>{
+    const idEquipo= req.params.idEquipo;
+    try {
+        let resp4= await Equipo.deleteOne({_id: idEquipo});
+        res.json({msg: "Ok"});
+    } catch (e) {
+        res.json({msg: "error"});
+    }
+});
+
 module.exports=Router;
