@@ -64,10 +64,30 @@ router.post('/login', function(req, res) {
 //Ejemplo aqui mismo se puede implementar toda la api no es necesario tener archivos por separados
 //Api para validar el inicio de sesion
 router.get("/login", async function(req, res) {
-    //console.log(req.query);
+    console.log(req.query);
     //res.json(req.query);
     let correo = req.query.correo;
     let password = req.query.password;
+    let op=req.query.tipo;
+    console.log(op)
+
+    if(op=="2"){
+        await User.find({ usuario: correo, contraseña: password }, (err, data) => {
+            if (err) {
+                res.json({ data: "error" });
+            } else {
+                if (data.length == 0) {
+                    res.json({ data: "no encontrado" });
+                } else {
+                    //console.log(data[0]);
+                    res.json(data[0]);
+                }
+            }
+        })
+
+    }else{
+
+    
 
     await User.find({ correo: correo, contraseña: password }, (err, data) => {
             if (err) {
@@ -80,7 +100,7 @@ router.get("/login", async function(req, res) {
                     res.json(data[0]);
                 }
             }
-        })
+        })};
         /*console.log("---------------------------------------");
         //console.log(req);
         console.log(req.body);
