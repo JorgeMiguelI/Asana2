@@ -149,7 +149,6 @@ Router.put("/UpdateProyecto", async(req, res)=>{
         let resp= await Proyecto.update({_id: proyecto.id}, proyecto);
         res.json(resp); 
     }catch(e){
-        console.log(e)
         res.json({msg: "error"});
     }
 })

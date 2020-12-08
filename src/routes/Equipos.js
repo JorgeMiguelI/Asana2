@@ -51,4 +51,15 @@ Router.delete("/DeleteEquipo/:idEquipo", async(req, res)=>{
     }
 });
 
+//Api para actualizar la informacion de un equipo
+Router.put("/UpdateTeam", async(req, res)=>{
+    const team= req.body.data;
+    try{
+        let resp= await Equipo.updateOne({_id: team.id}, team);
+        res.json(resp); 
+    }catch(e){
+        res.json({msg: "error"});
+    }
+})
+
 module.exports=Router;

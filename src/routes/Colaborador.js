@@ -29,8 +29,6 @@ Router.get('/UpdateRol/:idColaborador', async (req, res)=>{
     }catch(e){
         res.json({msg: "error"});
     }
-   
-
 })
 
 //Api para mandar correos para que se unan a una empresa
@@ -80,6 +78,17 @@ async function SendCorreo(correo, empresa){
         console.log(e);
     })
 }
+
+//Api para actualizar usuario
+Router.put("/UpdateUser", async(req, res)=>{
+    const user= req.body.data;
+    try{
+        let resp= await User.updateOne({_id: user.id}, user);
+        res.json(resp); 
+    }catch(e){
+        res.json({msg: "error"});
+    }
+})
 
 
 module.exports=Router;

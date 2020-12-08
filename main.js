@@ -32,6 +32,7 @@ app.use(require('./src/routes/proyecto'));
 app.use(require('./src/routes/Tareas'));
 app.use(require('./src/routes/Colaborador'));
 app.use(require('./src/routes/Equipos'));
+app.use(require('./src/routes/Empresas'));
 
 //Sever
 app.listen(app.get('port'), () => {
