@@ -23,30 +23,36 @@ module.exports={
                         break;
                     }
                     case '2':{
-                        Equipo.findById(datos.IdEquipo[0],(err,doc)=>{
-                            console.log("-*-*-*-*-* Busqueda finalizada -*-*-*-*-");
-                            var miembrosInfo=new Array();
-                            var miembros1=JSON.parse(doc.miembros);
-                            var esperar=new Promise((resolveE,rejectE)=>{
-                                
-                                User.find({},(err,doc1)=>{
 
-                                    doc1.map((item)=>{
-                                        miembros1.map((item1)=>{
-                                            if(item._id==item1.Id){
-                                                miembrosInfo.push(item);
-                                            }
-                                        })
-                                        
+                        if(datos.IdEquipo=='null'){
+                            resolveG([]);
+                        }else{
+                            Equipo.findById(datos.IdEquipo[0],(err,doc)=>{
+                                console.log("-*-*-*-*-* Busqueda finalizada -*-*-*-*-");
+                                var miembrosInfo=new Array();
+                                var miembros1=JSON.parse(doc.miembros);
+                                var esperar=new Promise((resolveE,rejectE)=>{
+                                    
+                                    User.find({},(err,doc1)=>{
+    
+                                        doc1.map((item)=>{
+                                            miembros1.map((item1)=>{
+                                                if(item._id==item1.Id){
+                                                    miembrosInfo.push(item);
+                                                }
+                                            })
+                                            
+                                        });
+                                        resolveE("correcto");
                                     });
-                                    resolveE("correcto");
-                                });
-                            });    
-                            esperar.then(()=>{
-                                console.log(miembrosInfo);
-                                resolveG(miembrosInfo);
-                            })  ;                    
-                        });
+                                });    
+                                esperar.then(()=>{
+                                    console.log(miembrosInfo);
+                                    resolveG(miembrosInfo);
+                                })  ;                    
+                            });
+                        }
+                        
                         break;
                     }
                     case '3':{
